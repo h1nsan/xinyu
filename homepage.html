@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>主页</title>
+    <style>
+        body {
+            /* 设置body为flexbox */
+            display: flex;
+            /* main axis为垂直方向 */
+            flex-direction: column;
+            /* cross axis为水平方向 */
+            /* 设置main axis和cross axis的对齐方式均为居中 */
+            justify-content: center;
+            align-items: center;
+            /* 设置body高度为视口的100%，这样才能在整个页面上实现居中 */
+            height: 100vh;
+            margin: 0;
+            /* 设定背景颜色和字体颜色 */
+            background-color: #7e3434;
+            color: #f5e2e2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome">
+        <h1>Hallo world！</h1>
+    </div>
+</body>
+</html>

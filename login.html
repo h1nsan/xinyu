@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+    <form id="loginForm">
+        <label>
+            用户名:
+            <input type="text" id="username" required>
+        </label>
+        <label>
+            密码:
+            <input type="password" id="password" required>
+        </label>
+        <input type="submit" value="登录">
+    </form>
+
+    <form id="registerForm" style="display:none;">
+        <label>
+            用户名:
+            <input type="text" id="newUsername" required>
+        </label>
+        <label>
+            密码:
+            <input type="password" id="newPassword" required>
+        </label>
+        <input type="submit" value="注册">
+    </form>
+    <button id="toggle">切换到注册</button>
+</body>
+</html>
+
+<script>
+    // 存储用户数据的对象
+    let users = {};
+    
+    // 获取各个元素
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const toggleButton = document.getElementById('toggle');
+    
+    // 切换到注册或登录
+    toggleButton.onclick = () => {
+        const loginIsHidden = loginForm.style.display === 'none';
+        if (loginIsHidden) {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            toggleButton.textContent = '切换到注册';
+        } else {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            toggleButton.textContent = '切换到登录';
+        }
+    };
+    
+    // 处理注册
+    registerForm.onsubmit = (e) => {
+        e.preventDefault();
+        const username = document.getElementById('newUsername').value;
+        const password = document.getElementById('newPassword').value;
+        if (users[username]) {
+            alert('用户名已存在！');
+        } else {
+            users[username] = password;
+            alert('注册成功！');
+            toggleButton.onclick();
+        }
+    };
+    
+    // 处理登录
+loginForm.onsubmit = (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    if (users[username] === password) {
+        alert('登录成功！');
+        // 登录成功后跳转到主页
+        window.location.href = 'homepage.html';
+    } else {
+        alert('用户名或密码错误！');
+    }
+};
+    </script>
